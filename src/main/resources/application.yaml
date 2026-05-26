@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: countries-api-consume
+
+server:
+  port: 8080
+
+rest-countries:
+  base-url: https://restcountries.com/v3.1
