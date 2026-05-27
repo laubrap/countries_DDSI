@@ -52,4 +52,17 @@ public class CountrySearcher {
 
         return Optional.of(country[0]);
     }
+
+    public List<Country> searchByRegion(String region){
+        URI uri = UriComponentsBuilder
+                .fromUriString(properties.getBaseUrl())
+                .path("/subregion/{subregion}")
+                .buildAndExpand(region)
+                .toUri();
+
+        Country[] countries = restTemplate.getForObject(uri,Country[].class);
+
+        return countries == null ? List.of() : Arrays.asList(countries);
+    }
+
 }
