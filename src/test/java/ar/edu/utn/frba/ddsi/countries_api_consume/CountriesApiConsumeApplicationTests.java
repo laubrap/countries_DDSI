@@ -51,4 +51,19 @@ class CountriesApiConsumeApplicationTests {
 
 		assertThat(filteredCountry).isNotEmpty();
 	}
+
+	@Test
+	void searchBySubRegionEuropeIsNotBlank(){
+		var list = countrySearcher.searchBySubRegion("Central Europe");
+
+		assertThat(list).isNotEmpty();
+
+		List<Country> filteredCountry = list.stream().
+				filter(s -> s.getName().getOfficial().equals("Republic of Slovenia"))
+				.toList();
+
+		System.out.println(filteredCountry);
+
+		assertThat(filteredCountry).isNotEmpty();
+	}
 }

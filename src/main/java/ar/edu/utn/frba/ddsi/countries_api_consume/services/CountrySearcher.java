@@ -56,8 +56,20 @@ public class CountrySearcher {
     public List<Country> searchByRegion(String region){
         URI uri = UriComponentsBuilder
                 .fromUriString(properties.getBaseUrl())
-                .path("/subregion/{subregion}")
+                .path("/region/{region}")
                 .buildAndExpand(region)
+                .toUri();
+
+        Country[] countries = restTemplate.getForObject(uri,Country[].class);
+
+        return countries == null ? List.of() : Arrays.asList(countries);
+    }
+
+    public List<Country> searchBySubRegion(String SubRegion){
+        URI uri = UriComponentsBuilder
+                .fromUriString(properties.getBaseUrl())
+                .path("/subregion/{subregion}")
+                .buildAndExpand(SubRegion)
                 .toUri();
 
         Country[] countries = restTemplate.getForObject(uri,Country[].class);
