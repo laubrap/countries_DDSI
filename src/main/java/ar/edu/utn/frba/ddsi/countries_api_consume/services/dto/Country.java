@@ -26,6 +26,9 @@ public class Country {
 
     @JsonProperty("subregion")
     private String subRegion;
+
+    @JsonProperty("currencies")
+    private Currency currency;
 }
 
 //si usamos directamente el mismo nombre de la key de json, matchea

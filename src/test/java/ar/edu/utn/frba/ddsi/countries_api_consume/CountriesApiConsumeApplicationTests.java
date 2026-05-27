@@ -66,4 +66,28 @@ class CountriesApiConsumeApplicationTests {
 
 		assertThat(filteredCountry).isNotEmpty();
 	}
+
+	@Test
+	void searchByCapitalBuenosAiresFoundsArgentina(){
+		var opt = countrySearcher.searchByCapital("Buenos Aires");
+
+		System.out.println(opt);
+
+		assertThat(opt).isNotEmpty();
+		assertEquals("Argentina",opt.get().getName().getCommon());
+
+	}
+
+
+	@Test
+	void searchByEuroCurrencyHasManyCountries(){
+		var list = countrySearcher.searchByCurrency("euro");
+
+		assertThat(list).isNotEmpty();
+
+
+		System.out.println(list);
+
+	}
+
 }

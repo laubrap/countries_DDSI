@@ -77,4 +77,31 @@ public class CountrySearcher {
         return countries == null ? List.of() : Arrays.asList(countries);
     }
 
+    public Optional<Country> searchByCapital(String capital) {
+        URI uri = UriComponentsBuilder
+                .fromUriString(properties.getBaseUrl())
+                .path("/capital/{capital}")
+                .buildAndExpand(capital)
+                .toUri();
+
+        Country[] country = restTemplate.getForObject(uri, Country[].class);
+
+        if (country == null || country.length == 0) {
+            return Optional.empty();
+        }
+
+        return Optional.of(country[0]);
+    }
+
+    public List<Country> searchByCurrency(String currency){
+        URI uri = UriComponentsBuilder
+                .fromUriString(properties.getBaseUrl())
+                .path("/currency/{currency}")
+                .buildAndExpand(currency)
+                .toUri();
+
+        Country[] countries = restTemplate.getForObject(uri,Country[].class);
+
+        return countries == null ? List.of() : Arrays.asList(countries);
+    }
 }
